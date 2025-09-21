@@ -30,7 +30,7 @@ class Hashmap {
     // TODO: increase "buckets" as required
     if (this.totalBuckets / this.currentCapacity >= this.loadFactor) {
       this.currentCapacity = this.currentCapacity + this.capacity;
-      for (let i = 0; i < this.currentCapacity * 2; i++) {
+      for (let i = 0; i < this.currentCapacity; i++) {
         this.buckets.push(null);
       }
     }
