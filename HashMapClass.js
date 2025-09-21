@@ -50,23 +50,20 @@ class Hashmap {
   }
 }
 
-// let test = new Hashmap(0.75, 16); // Max buckets 16 intially
-// console.log(test);
+let test = new Hashmap(0.75, 16); // Max buckets 16 intially
+console.log(test);
 
-// test.set("apple", "red");
-// test.set("banana", "yellow");
-// test.set("carrot", "orange");
-// test.set("dog", "brown");
-// test.set("elephant", "gray");
-// test.set("frog", "green");
-// test.set("grape", "purple");
-// test.set("hat", "black");
-// test.set("ice cream", "white");
-// test.set("jacket", "blue");
-// test.set("kite", "pink");
-// test.set("lion", "golden");
+test.set("apple", "red");
+test.set("banana", "yellow");
+test.set("carrot", "orange");
+test.set("dog", "brown");
+test.set("elephant", "gray");
+test.set("frog", "green");
+test.set("grape", "purple");
+test.set("hat", "black");
+test.set("ice cream", "white");
+test.set("jacket", "blue");
+test.set("kite", "pink");
+test.set("lion", "golden");
 
-// console.log(test);
-
-console.log(hash("dog", 16));
-console.log(hash("dog", 32));
+console.log(test);
