@@ -13,6 +13,7 @@ function hash(key, capacity = 16) {
 class Hashmap {
   constructor(loadFactor, capacity = 16) {
     this.buckets = [];
+    this.totalBuckets = 0;
     this.loadFactor = loadFactor;
     this.capacity = capacity;
     this.currentCapacity = capacity;
@@ -34,13 +35,14 @@ class Hashmap {
       let list = new LinkedList();
       this.buckets[bucket] = list;
       this.buckets[bucket].append([key, value]);
+      this.totalBuckets++;
     } else {
       this.buckets[bucket].append([key, value]);
     }
   }
 }
 
-let test = new Hashmap(0.74, 16);
+let test = new Hashmap(0.75, 16); // Max buckets 12 intially
 console.log(test);
 
 test.set("apple", "red");
@@ -55,5 +57,9 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
+// Load factor test------------------------
+test.set("sky", "blue");
+test.set("sunset", "orange");
+test.set("baseball", "white");
 
 console.log(test);
