@@ -28,6 +28,12 @@ class Hashmap {
     }
 
     // TODO: increase "buckets" as required
+    if (this.totalBuckets / this.currentCapacity >= this.loadFactor) {
+      this.currentCapacity = this.currentCapacity + this.capacity
+      for (let i = 0; i < this.capacity; i++) {
+        this.buckets.push(null);
+      }
+    }
 
     const bucket = hash(key, this.currentCapacity);
 
@@ -57,9 +63,6 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
-// Load factor test------------------------
-test.set("sky", "blue");
-test.set("sunset", "orange");
-test.set("baseball", "white");
+
 
 console.log(test);
