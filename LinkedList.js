@@ -100,7 +100,7 @@ export class LinkedList {
     let i = 0;
 
     while (i < this.length) {
-      if (current.value == value) {
+      if (current.value[0] == value) {
         return i;
       } else {
         current = current.nextNode;
