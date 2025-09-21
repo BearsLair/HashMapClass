@@ -52,7 +52,7 @@ export class LinkedList {
       }
     }
   }
-  // at(index) - returns node at given index (0-based).
+  // at(index) - returns value at given index (0-based).
   at(index) {
     let current = this.headNode;
     let i = -1;
