@@ -48,10 +48,17 @@ class Hashmap {
       this.length++;
     }
   }
+
+  // Retrieve value assigned to key
+  get(key) {
+    const bucket = hash(key);
+    const keyIndex = this.buckets[bucket].find(key);
+    const node = this.buckets[bucket].at(keyIndex);
+    return node[1];
+  }
 }
 
 let test = new Hashmap(0.75, 16); // Max buckets 16 intially
-console.log(test);
 
 test.set("apple", "red");
 test.set("banana", "yellow");
@@ -66,4 +73,5 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-console.log(test);
+let get = test.get("frog");
+console.log("value for frog: ", get);
