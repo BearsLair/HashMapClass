@@ -29,8 +29,8 @@ class Hashmap {
 
     // TODO: increase "buckets" as required
     if (this.totalBuckets / this.currentCapacity >= this.loadFactor) {
-      this.currentCapacity = this.currentCapacity + this.capacity
-      for (let i = 0; i < this.capacity; i++) {
+      this.currentCapacity = this.currentCapacity + this.capacity;
+      for (let i = 0; i < this.currentCapacity * 2; i++) {
         this.buckets.push(null);
       }
     }
@@ -63,6 +63,5 @@ test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
-
 
 console.log(test);
