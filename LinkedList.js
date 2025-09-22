@@ -97,18 +97,44 @@ export class LinkedList {
   // find(value) - returns index of node containing value
   find(value) {
     let current = this.headNode;
+    console.log(current);
+    if (current == null) {
+      return "not found";
+    }
     let i = 0;
 
     while (i < this.length) {
       if (current.value[0] == value) {
         return i;
       } else {
+        console.log("here? ", value);
+        console.log(current.nextNode);
         current = current.nextNode;
         i++;
       }
     }
 
     return "not found";
+  }
+
+  keyExists(value) {
+    let current = this.headNode;
+    let i = 0;
+
+    if (this.headNode == null) {
+      return false;
+    }
+
+    while (i < this.length) {
+      if (current.value[0] == value) {
+        return true;
+      } else {
+        current = current.nextNode;
+        i++;
+      }
+    }
+
+    return false;
   }
   // toString - display list objects as strings
   // with format: ( value ) -> ( value ) -> ( value ) -> null
