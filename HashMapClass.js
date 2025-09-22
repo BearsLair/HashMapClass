@@ -58,7 +58,11 @@ class Hashmap {
     const bucket = hash(key);
     const keyIndex = this.buckets[bucket].find(key);
     const node = this.buckets[bucket].at(keyIndex);
-    return node[1];
+    if (node == "not found") {
+      return "not found";
+    } else {
+      return node[1];
+    }
   }
 
   has(key) {

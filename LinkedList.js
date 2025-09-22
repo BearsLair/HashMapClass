@@ -54,6 +54,9 @@ export class LinkedList {
   }
   // at(index) - returns value at given index (0-based).
   at(index) {
+    if (index == "not found") {
+      return "not found";
+    }
     let current = this.headNode;
     let i = -1;
 
@@ -97,7 +100,6 @@ export class LinkedList {
   // find(value) - returns index of node containing value
   find(value) {
     let current = this.headNode;
-    console.log(current);
     if (current == null) {
       return "not found";
     }
@@ -107,14 +109,14 @@ export class LinkedList {
       if (current.value[0] == value) {
         return i;
       } else {
-        console.log("here? ", value);
-        console.log(current.nextNode);
-        current = current.nextNode;
-        i++;
+        if (current.nextNode == null) {
+          return "not found";
+        } else {
+          current = current.nextNode;
+          i++;
+        }
       }
     }
-
-    return "not found";
   }
 
   keyExists(value) {
