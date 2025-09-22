@@ -28,6 +28,10 @@ class Hashmap {
       }
     }
 
+    // TODO: When key already exists in hashmap,
+    // change the value of that key when using
+    // set() command.
+
     // TODO: increase "buckets" as required; the following changes buckets for retrieval-which doesn't work. :(
     // if (this.filledBuckets / this.capacity >= this.loadFactor) {
     //   for (let i = 0; i < this.capacity; i++) {
@@ -56,6 +60,12 @@ class Hashmap {
     const node = this.buckets[bucket].at(keyIndex);
     return node[1];
   }
+
+  has(key) {
+    const bucket = hash(key);
+    const inArray = this.buckets[bucket].keyExists(key);
+    return inArray;
+  }
 }
 
 let test = new Hashmap(0.75, 16); // Max buckets 16 intially
@@ -73,5 +83,7 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-let get = test.get("frog");
-console.log("value for frog: ", get);
+console.log(test.get("elephant"));
+console.log(test.get("poodle"));
+console.log(test.get("frog"));
+console.log(test.get("monkey"));
