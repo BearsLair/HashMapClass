@@ -17,7 +17,7 @@ class Hashmap {
     this.filledBuckets = 0;
     this.loadFactor = loadFactor;
     this.capacity = capacity;
-    this.length = 0;
+    this.totalEntries = 0;
   }
 
   // Store key value pair in hashmap
@@ -46,10 +46,10 @@ class Hashmap {
       this.buckets[bucket] = list;
       this.buckets[bucket].append([key, value]);
       this.filledBuckets++;
-      this.length++;
+      this.totalEntries++;
     } else {
       this.buckets[bucket].append([key, value]);
-      this.length++;
+      this.totalEntries++;
     }
   }
 
@@ -70,6 +70,17 @@ class Hashmap {
     const inArray = this.buckets[bucket].keyExists(key);
     return inArray;
   }
+
+  length() {
+    return this.totalEntries;
+  }
+
+  clear() {
+    this.buckets = [];
+    this.filledBuckets = 0;
+    this.capacity = 0;
+    this.totalEntries = 0;
+  }
 }
 
 let test = new Hashmap(0.75, 16); // Max buckets 16 intially
@@ -87,7 +98,8 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-console.log(test.get("elephant"));
-console.log(test.get("poodle"));
-console.log(test.get("frog"));
-console.log(test.get("monkey"));
+console.log(test);
+
+test.clear();
+
+console.log(test);
