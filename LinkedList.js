@@ -175,6 +175,10 @@ export class LinkedList {
   // removeAt(index) - removes node at index
   removeAt(index) {
     let current = this.headNode;
+    if (this.size() == 1) {
+      this.headNode = null;
+      return;
+    }
     let i = 0;
     let nextNodeCopy = null;
 

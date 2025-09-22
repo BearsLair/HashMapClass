@@ -71,6 +71,26 @@ class Hashmap {
     return inArray;
   }
 
+  remove(key) {
+    const bucket = hash(key);
+    console.log("key :", key, " bucket: ", bucket);
+    const inArray = this.buckets[bucket].keyExists(key);
+    if (inArray == true) {
+      const bucketIndex = this.buckets[bucket].find(key);
+      this.buckets[bucket].removeAt(bucketIndex);
+      this.totalEntries--;
+      // TODO: bucket should be null with zero data entries
+      console.log(this.buckets[bucket]);
+      if (this.buckets[bucket].headNode == null) {
+        this.buckets[bucket] = null;
+        this.filledBuckets--;
+      }
+      return true;
+    } else if (inArray == false) {
+      return false;
+    }
+  }
+
   length() {
     return this.totalEntries;
   }
@@ -100,6 +120,6 @@ test.set("lion", "golden");
 
 console.log(test);
 
-test.clear();
+test.remove("apple");
 
 console.log(test);
