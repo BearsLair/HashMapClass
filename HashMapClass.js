@@ -11,7 +11,7 @@ function hash(key, capacity = 16) {
   return hashCode;
 }
 
-class Hashmap {
+export class Hashmap {
   constructor(loadFactor, capacity = 16) {
     this.buckets = [];
     this.filledBuckets = 0;
@@ -22,6 +22,11 @@ class Hashmap {
 
   // Store key value pair in hashmap
   set(key, value) {
+    // TODO: increase "buckets" as required; the following changes buckets for retrieval-which doesn't work. :(
+    if (this.filledBuckets / this.capacity >= this.loadFactor) {
+      this.increaseBuckets();
+    }
+
     if (this.buckets.length == 0) {
       for (let i = 0; i < this.capacity; i++) {
         this.buckets.push(null);
@@ -31,13 +36,6 @@ class Hashmap {
     // TODO: When key already exists in hashmap,
     // change the value of that key when using
     // set() command.
-
-    // TODO: increase "buckets" as required; the following changes buckets for retrieval-which doesn't work. :(
-    // if (this.filledBuckets / this.capacity >= this.loadFactor) {
-    //   for (let i = 0; i < this.capacity; i++) {
-    //     this.buckets.push(null);
-    //   }
-    // }
 
     const bucket = hash(key, this.capacity);
 
@@ -149,22 +147,37 @@ class Hashmap {
     });
 
     console.log(data);
+    return data;
+  }
+
+  increaseBuckets() {
+    const dataArray = this.entries();
+    console.log("dataArray: ", dataArray);
+
+    this.buckets = [];
+    console.log("buckets reset: ", this.buckets);
+    this.capacity = this.capacity * 2;
+    console.log("this.capacity reset: ", this.capacity);
+    this.filledBuckets = 0;
+    console.log("this.filledBuckets reset: ", this.filledBuckets);
+
+    for (let i = 0; i < this.capacity; i++) {
+      this.buckets.push(null);
+    }
+
+    console.log("new buckets array: ", this.buckets);
+
+    dataArray.map((data) => {
+      const bucket = hash(data[0], this.capacity);
+
+      if (this.buckets[bucket] == null) {
+        let list = new LinkedList();
+        this.buckets[bucket] = list;
+        this.buckets[bucket].append(data);
+        this.filledBuckets++;
+      } else {
+        this.buckets[bucket].append(data);
+      }
+    });
   }
 }
-
-let test = new Hashmap(0.75, 16); // Max buckets 16 intially
-
-test.set("apple", "red");
-test.set("banana", "yellow");
-test.set("carrot", "orange");
-test.set("dog", "brown");
-test.set("elephant", "gray");
-test.set("frog", "green");
-test.set("grape", "purple");
-test.set("hat", "black");
-test.set("ice cream", "white");
-test.set("jacket", "blue");
-test.set("kite", "pink");
-test.set("lion", "golden");
-
-test.entries();
