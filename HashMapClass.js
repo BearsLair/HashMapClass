@@ -133,6 +133,23 @@ class Hashmap {
 
     console.log(values);
   }
+
+  entries() {
+    let data = [];
+
+    this.buckets.map((bucket) => {
+      if (bucket != null) {
+        let current = bucket.headNode;
+
+        while (current != null) {
+          data.push(current.value);
+          current = current.nextNode;
+        }
+      }
+    });
+
+    console.log(data);
+  }
 }
 
 let test = new Hashmap(0.75, 16); // Max buckets 16 intially
@@ -150,5 +167,4 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-test.keys();
-test.values();
+test.entries();
