@@ -79,8 +79,6 @@ class Hashmap {
       const bucketIndex = this.buckets[bucket].find(key);
       this.buckets[bucket].removeAt(bucketIndex);
       this.totalEntries--;
-      // TODO: bucket should be null with zero data entries
-      console.log(this.buckets[bucket]);
       if (this.buckets[bucket].headNode == null) {
         this.buckets[bucket] = null;
         this.filledBuckets--;
@@ -101,6 +99,40 @@ class Hashmap {
     this.capacity = 0;
     this.totalEntries = 0;
   }
+
+  keys() {
+    let keys = [];
+
+    this.buckets.map((bucket) => {
+      if (bucket != null) {
+        let current = bucket.headNode;
+
+        while (current != null) {
+          keys.push(current.value[0]);
+          current = current.nextNode;
+        }
+      }
+    });
+
+    console.log(keys);
+  }
+
+  values() {
+    let values = [];
+
+    this.buckets.map((bucket) => {
+      if (bucket != null) {
+        let current = bucket.headNode;
+
+        while (current != null) {
+          values.push(current.value[1]);
+          current = current.nextNode;
+        }
+      }
+    });
+
+    console.log(values);
+  }
 }
 
 let test = new Hashmap(0.75, 16); // Max buckets 16 intially
@@ -118,8 +150,5 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-console.log(test);
-
-test.remove("apple");
-
-console.log(test);
+test.keys();
+test.values();
