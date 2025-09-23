@@ -1,6 +1,6 @@
 // The nodes are NESTED Node objects, joined together via nextNode property.
 
-export class Node {
+class Node {
   constructor(value = null, nextNode = null) {
     this.value = value;
     this.nextNode = nextNode;
@@ -120,6 +120,8 @@ export class LinkedList {
   }
 
   keyExists(value) {
+    console.log("value passed to keyExists: ", value);
+    console.log(this.headNode);
     let current = this.headNode;
     let i = 0;
 

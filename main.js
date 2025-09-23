@@ -15,13 +15,14 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-test.set("poodle", "pink");
-test.set("watson", "brown");
-test.set("tiger", "orange");
-test.set("mouse", "grey");
-test.set("bigfoot", "black");
-test.set("spider", "black");
-test.set("monkey", "black");
-test.set("moon", "silver");
+// test.set("poodle", "pink");
+// test.set("watson", "brown");
+// test.set("tiger", "orange");
+// test.set("mouse", "grey");
+// test.set("bigfoot", "black");
+// test.set("spider", "black");
+// test.set("monkey", "black");
+// test.set("moon", "silver");
 
-console.log(test);
+test.set("apple", "green");
+test.entries();

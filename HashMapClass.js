@@ -22,7 +22,8 @@ export class Hashmap {
 
   // Store key value pair in hashmap
   set(key, value) {
-    // TODO: increase "buckets" as required; the following changes buckets for retrieval-which doesn't work. :(
+    console.log("data sent to set: ", [key, value]);
+    // increase "buckets" as required
     if (this.filledBuckets / this.capacity >= this.loadFactor) {
       this.increaseBuckets();
     }
@@ -33,11 +34,9 @@ export class Hashmap {
       }
     }
 
-    // TODO: When key already exists in hashmap,
-    // change the value of that key when using
-    // set() command.
-
     const bucket = hash(key, this.capacity);
+
+    //Change value if key already exists in Hashmap
 
     if (this.buckets[bucket] == null) {
       let list = new LinkedList();
@@ -45,6 +44,8 @@ export class Hashmap {
       this.buckets[bucket].append([key, value]);
       this.filledBuckets++;
       this.totalEntries++;
+    } else if (this.has(key) == true) {
+      // Logic for changing value for existing key
     } else {
       this.buckets[bucket].append([key, value]);
       this.totalEntries++;
@@ -64,14 +65,15 @@ export class Hashmap {
   }
 
   has(key) {
+    console.log("key: ", key);
     const bucket = hash(key);
     const inArray = this.buckets[bucket].keyExists(key);
+    console.log("has key: ", inArray);
     return inArray;
   }
 
   remove(key) {
     const bucket = hash(key);
-    console.log("key :", key, " bucket: ", bucket);
     const inArray = this.buckets[bucket].keyExists(key);
     if (inArray == true) {
       const bucketIndex = this.buckets[bucket].find(key);
@@ -152,20 +154,14 @@ export class Hashmap {
 
   increaseBuckets() {
     const dataArray = this.entries();
-    console.log("dataArray: ", dataArray);
 
     this.buckets = [];
-    console.log("buckets reset: ", this.buckets);
     this.capacity = this.capacity * 2;
-    console.log("this.capacity reset: ", this.capacity);
     this.filledBuckets = 0;
-    console.log("this.filledBuckets reset: ", this.filledBuckets);
 
     for (let i = 0; i < this.capacity; i++) {
       this.buckets.push(null);
     }
-
-    console.log("new buckets array: ", this.buckets);
 
     dataArray.map((data) => {
       const bucket = hash(data[0], this.capacity);
