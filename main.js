@@ -1,6 +1,6 @@
 import { Hashmap } from "./HashMapClass.js";
 
-let test = new Hashmap(0.75, 16); // Max buckets 16 intially
+let test = new Hashmap(0.6, 16); // Max buckets 16 intially
 
 test.set("apple", "red");
 test.set("banana", "yellow");
@@ -13,16 +13,21 @@ test.set("hat", "black");
 test.set("ice cream", "white");
 test.set("jacket", "blue");
 test.set("kite", "pink");
+
 test.set("lion", "golden");
+test.set("poodle", "pink");
+test.set("watson", "brown");
+test.set("tiger", "orange");
+test.set("mouse", "grey");
+test.set("bigfoot", "black");
+test.set("spider", "black");
+test.set("monkey", "black");
+test.set("moon", "silver");
 
-// test.set("poodle", "pink");
-// test.set("watson", "brown");
-// test.set("tiger", "orange");
-// test.set("mouse", "grey");
-// test.set("bigfoot", "black");
-// test.set("spider", "black");
-// test.set("monkey", "black");
-// test.set("moon", "silver");
+console.log(test);
 
+// Assign different value to keys test
+test.entries();
 test.set("apple", "green");
+test.set("lion", "yellow");
 test.entries();

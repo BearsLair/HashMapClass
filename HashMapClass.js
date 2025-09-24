@@ -22,9 +22,9 @@ export class Hashmap {
 
   // Store key value pair in hashmap
   set(key, value) {
-    console.log("data sent to set: ", [key, value]);
     // increase "buckets" as required
     if (this.filledBuckets / this.capacity >= this.loadFactor) {
+      console.log("increased buckets triggered");
       this.increaseBuckets();
     }
 
@@ -46,6 +46,20 @@ export class Hashmap {
       this.totalEntries++;
     } else if (this.has(key) == true) {
       // Logic for changing value for existing key
+      const keyIndex = this.buckets[bucket].find(key);
+
+      let current = this.buckets[bucket].headNode;
+      let i = -1;
+
+      while (current != null) {
+        i++;
+        if (i == keyIndex) {
+          current.value = [key, value];
+          break;
+        } else {
+          current = current.nextNode;
+        }
+      }
     } else {
       this.buckets[bucket].append([key, value]);
       this.totalEntries++;
@@ -54,7 +68,7 @@ export class Hashmap {
 
   // Retrieve value assigned to key
   get(key) {
-    const bucket = hash(key);
+    const bucket = hash(key, this.capacity);
     const keyIndex = this.buckets[bucket].find(key);
     const node = this.buckets[bucket].at(keyIndex);
     if (node == "not found") {
@@ -65,15 +79,22 @@ export class Hashmap {
   }
 
   has(key) {
-    console.log("key: ", key);
-    const bucket = hash(key);
-    const inArray = this.buckets[bucket].keyExists(key);
-    console.log("has key: ", inArray);
-    return inArray;
+    console.log(`${key} sent to has(key)`);
+    const bucket = hash(key, this.capacity);
+    console.log(`bucket ${bucket} for ${key} in has(key)`);
+    console.log(this.buckets[12]);
+    if (this.buckets[bucket] == null) {
+      console.log(`${key} evaluated to false`);
+      return false;
+    } else {
+      const inArray = this.buckets[bucket].keyExists(key);
+      console.log(`${key} in has(key) evaluated as: `, inArray);
+      return inArray;
+    }
   }
 
   remove(key) {
-    const bucket = hash(key);
+    const bucket = hash(key, this.capacity);
     const inArray = this.buckets[bucket].keyExists(key);
     if (inArray == true) {
       const bucketIndex = this.buckets[bucket].find(key);
@@ -149,6 +170,7 @@ export class Hashmap {
     });
 
     console.log(data);
+
     return data;
   }
 
@@ -175,5 +197,7 @@ export class Hashmap {
         this.buckets[bucket].append(data);
       }
     });
+
+    console.log("increased buckets finished");
   }
 }

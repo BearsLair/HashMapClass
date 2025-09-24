@@ -120,9 +120,9 @@ export class LinkedList {
   }
 
   keyExists(value) {
-    console.log("value passed to keyExists: ", value);
-    console.log(this.headNode);
+    console.log(value);
     let current = this.headNode;
+    console.log(current);
     let i = 0;
 
     if (this.headNode == null) {
